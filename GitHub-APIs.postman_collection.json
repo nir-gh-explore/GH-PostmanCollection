@@ -1,0 +1,134 @@
+{
+	"info": {
+		"_postman_id": "d33c07d4-f3e4-4a4a-81f6-81839016f45e",
+		"name": "GitHub-APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3181076"
+	},
+	"item": [
+		{
+			"name": "protect_master_branch",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n                \"required_status_checks\": {\"strict\": true, \"contexts\": [\"default\"]},\r\n                \"enforce_admins\": false,\r\n                \"required_pull_request_reviews\": null,\r\n                \"restrictions\": null\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/{{owner}}/{{repo}}/branches/main/protection",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"{{owner}}",
+						"{{repo}}",
+						"branches",
+						"main",
+						"protection"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create-issue",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Found a bug\",\r\n    \"body\": \"I am having a problem with this.\",\r\n    \"labels\": [\r\n        \"bug\"\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/{{owner}}/{{repo}}/issues",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"{{owner}}",
+						"{{repo}}",
+						"issues"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delete-repo",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "token {{token}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"required_status_checks\": {\r\n    \"strict\": true,\r\n    \"contexts\": [\r\n      \"continuous-integration/travis-ci\"\r\n    ]\r\n  },\r\n  \"enforce_admins\": true,\r\n  \"required_pull_request_reviews\": {\r\n    \"dismissal_restrictions\": {\r\n      \"users\": [\r\n        \"octocat\"\r\n      ],\r\n      \"teams\": [\r\n        \"justice-league\"\r\n      ]\r\n    },\r\n    \"dismiss_stale_reviews\": true,\r\n    \"require_code_owner_reviews\": true,\r\n    \"required_approving_review_count\": 2,\r\n    \"require_last_push_approval\": true,\r\n    \"bypass_pull_request_allowances\": {\r\n      \"users\": [\r\n        \"octocat\"\r\n      ],\r\n      \"teams\": [\r\n        \"justice-league\"\r\n      ]\r\n    }\r\n  },\r\n  \"restrictions\": {\r\n    \"users\": [\r\n      \"octocat\"\r\n    ],\r\n    \"teams\": [\r\n      \"justice-league\"\r\n    ],\r\n    \"apps\": [\r\n      \"super-ci\"\r\n    ]\r\n  },\r\n  \"required_linear_history\": true,\r\n  \"allow_force_pushes\": true,\r\n  \"allow_deletions\": true,\r\n  \"block_creations\": true,\r\n  \"required_conversation_resolution\": true,\r\n  \"lock_branch\": true,\r\n  \"allow_fork_syncing\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.github.com/repos/{{owner}}/{{repo}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"github",
+						"com"
+					],
+					"path": [
+						"repos",
+						"{{owner}}",
+						"{{repo}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
